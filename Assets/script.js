@@ -24,7 +24,7 @@ var saveCalendar = function (event) {
 var currentHour = parseInt(moment().format("H"));
 //Color Blocks
 function timeBlock(hour) {
-  hour = Number(hour);
+  hour = $(`#hour`);
   currentHour = Number(currentHour);
   if (hour > currentHour) {
     return 'future'
@@ -35,12 +35,14 @@ function timeBlock(hour) {
   }
 };
 
-saveButtonEl.on('click', function(event) {
-  var calendarItem =
-    event.target.parentElement.previousElementSibling.children[0].value;
-  localStorage.setItem(event.target.attributes[0].value, calendarItem);
-});
- 
+function handleBlockSubmit(event){
+  event.preventDefault();
+
+  var calendarItem = calInputEl.val().trim();
+  printBlockData(calendarItem)
+};
+
+saveButtonEl.on('click', handleBlockSubmit);
 
 
 

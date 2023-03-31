@@ -1,7 +1,5 @@
-//Current Date/Time
-var timeNow =  moment().format('MMMM Do YYYY, h:mm:ss a')
-$('#currentDay').text(timeNow);
-
+var timeBlock = $(`#time-block`);
+var saveButtonEl = $('#saveBtn');
 var time = [
   "9",
   "10",
@@ -12,13 +10,14 @@ var time = [
   "3",
   "4",
 ];
-var timeBlock = $(`#time-block`);
-var saveButtonEl = $('#saveBtn');
 
+//Current Date/Time
+var timeNow =  moment().format('MMMM Do YYYY, h:mm:ss a')
+$('#currentDay').text(timeNow);
 
-var setTimeBlocks = function() {
-  localStorage.setItem("timeBlocks", JSON.stringify(timeBlock));
-}
+// var setTimeBlocks = function() {
+//   localStorage.setItem("timeBlocks", JSON.stringify(timeBlock));
+// }
 
 var getTimeBlocks = function() {
   var loadBlocks = JSON.parse(localStorage.getItem("timeBlocks"));
@@ -32,20 +31,25 @@ var getTimeBlocks = function() {
   }
 };
 
+var currentHour = moment().hour() - 9;
 
-var currentHour = parseInt(moment().format("H"));
 //Color Blocks
-function timeBlock(hour) {
-  hour = $(`#hour`);
-  currentHour = Number(currentHour);
-  if (hour > currentHour) {
-    return 'future'
-  } else if (hour === currentHour) {
-    return 'present'
-  } else{
-    return 'past'
+function setColor () {
+
+  for (i=0; i < 9; i++) {
+
+  if (i < currentHour) {
+      var timeBlock= "past";
+  } else if (i === currentHour) {
+      var timeBlock = "present";
+  } else (i > currentHour) {
+    var timeBlock = "future";
   }
+}
 };
+
+
+
 
 function handleBlockSubmit(event){
   event.preventDefault();

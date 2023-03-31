@@ -1,6 +1,6 @@
-var timeBlock = $(`#time-block`);
+var timeBlock = $(`.time-block`);
 var saveButtonEl = $('#saveBtn');
-var time = [
+var timeArray = [
   "9",
   "10",
   "11",
@@ -15,35 +15,20 @@ var time = [
 var timeNow =  moment().format('MMMM Do YYYY, h:mm:ss a')
 $('#currentDay').text(timeNow);
 
-// var setTimeBlocks = function() {
-//   localStorage.setItem("timeBlocks", JSON.stringify(timeBlock));
-// }
-
-var getTimeBlocks = function() {
-  var loadBlocks = JSON.parse(localStorage.getItem("timeBlocks"));
-  if (loadBlocks) {
-    timeBlocks = loadBlocks
-
-    $.each(timeBlocks, function(hour, timeBlock) {
-      var hourDiv = $("#" + hour);
-      createBlock(timeBlock, hourDiv);
-    })
-  }
-};
 
 var currentHour = moment().hour() - 9;
 
 //Color Blocks
 function setColor () {
 
-  for (i=0; i < 9; i++) {
+  for (i=0; i < timeArray.length; i++) {
 
   if (i < currentHour) {
-      var timeBlock= "past";
+      timeBlock[i].addClass("past");
   } else if (i === currentHour) {
-      var timeBlock = "present";
-  } else (i > currentHour) {
-    var timeBlock = "future";
+    timeBlock[i].addClass("present");
+  } else {
+      timeBlock[i].addClass("future");
   }
 }
 };

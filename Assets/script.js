@@ -1,6 +1,36 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
+//Current Date/Time
+var timeNow =  moment().format('MMMM Do YYYY, h:mm:ss a')
+$('#currentDay').text(timeNow);
+
+var timeBlocks = {
+  "9": [],
+  "10": [],
+  "11": [],
+  "12": [],
+  "1": [],
+  "2": [],
+  "3": [],
+  "4": [],
+};
+
+var setTimeBlocks = function() {
+  localStorage.setItem("timeBlocks", JSON.stringify(timeBlocks));
+}
+
+var getTimeBlocks = function() {
+  var loadBlocks = JSON.parse(localStorage.getItem("timeBlocks"));
+  if (loadBlocks) {
+    timeBlocks = loadBlocks
+
+    $.each(timeBlocks, function(hour, timeBlock) {
+      var hourDiv = $("#" + hour);
+      createBlock(timeBlock, hourDiv);
+    })
+  }
+
+  currentHour();
+}
+
 var saveButtonEl = $('#save-btn');
 var calInputEl = $('#cal-text');
 
@@ -45,10 +75,6 @@ function handleBlockSubmit(event){
 saveButtonEl.on('click', handleBlockSubmit);
 
 
-
-//Current Date/Time
-var timeNow =  moment().format('MMMM Do YYYY, h:mm:ss a')
-$('#currentDay').text(timeNow);
 
 
 

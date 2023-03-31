@@ -1,20 +1,21 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
+var saveButtonEl = $('#save-btn');
 
-
-
+var handleFormSubmit
 //document.ready
 $(function () {
   console.log(`I'm ready!`);
 });
 
-
+//Current Date/Time
 var timeNow =  moment().format('MMMM Do YYYY, h:mm:ss a')
 $('#currentDay').text(timeNow);
 
+saveButtonEl.on('submit', function() {
 
-
+});
 
 
 

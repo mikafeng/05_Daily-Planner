@@ -2,20 +2,51 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 var saveButtonEl = $('#save-btn');
+var calInputEl = $('#cal-text');
 
-var handleFormSubmit
-//document.ready
-$(function () {
-  console.log(`I'm ready!`);
-});
+
+
+function createCal(time) {
+  let
+}
+
+
+var saveCalendar = function (event) {
+  event.preventDefault();
+  var calInput = calInputEl.val();
+
+  if (!calInput) {
+    console.log('need to fill out schedule block to save');
+    return;
+  }
+};
+  
+
+function timeTense(hour) {
+  hour = Number(hour);
+  currentHour = Number(currentHour);
+  if (hour > currentHour) {
+    return 'future'
+  } else if (hour === currentHour) {
+    return 'present'
+  } else{
+    return 'past'
+  }
+};
+
+saveButtonEl.on('submit', function() {
+  var key = $(this).parent().attr("id").split("-")[1];
+  var value = $(this).parent().find(".description").val();
+  localStorage.setItem(key, value);
+});  
+
+
 
 //Current Date/Time
 var timeNow =  moment().format('MMMM Do YYYY, h:mm:ss a')
 $('#currentDay').text(timeNow);
 
-saveButtonEl.on('submit', function() {
 
-});
 
 
 

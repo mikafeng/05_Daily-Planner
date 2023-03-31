@@ -2,19 +2,22 @@
 var timeNow =  moment().format('MMMM Do YYYY, h:mm:ss a')
 $('#currentDay').text(timeNow);
 
-var timeBlocks = {
-  "9": [],
-  "10": [],
-  "11": [],
-  "12": [],
-  "1": [],
-  "2": [],
-  "3": [],
-  "4": [],
-};
+var time = [
+  "9",
+  "10",
+  "11",
+  "12",
+  "1",
+  "2",
+  "3",
+  "4",
+];
+var timeBlock = $(`#time-block`);
+var saveButtonEl = $('#saveBtn');
+
 
 var setTimeBlocks = function() {
-  localStorage.setItem("timeBlocks", JSON.stringify(timeBlocks));
+  localStorage.setItem("timeBlocks", JSON.stringify(timeBlock));
 }
 
 var getTimeBlocks = function() {
@@ -27,29 +30,8 @@ var getTimeBlocks = function() {
       createBlock(timeBlock, hourDiv);
     })
   }
-
-  currentHour();
-}
-
-var saveButtonEl = $('#save-btn');
-var calInputEl = $('#cal-text');
-
-
-
-function createCal(time) {
-  let
-}
-
-
-var saveCalendar = function (event) {
-  event.preventDefault();
-  var calInput = calInputEl.val();
-
-  if (!calInput) {
-    console.log('need to fill out schedule block to save');
-    return;
-  }
 };
+
 
 var currentHour = parseInt(moment().format("H"));
 //Color Blocks
